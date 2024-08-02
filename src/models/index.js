@@ -10,3 +10,5 @@ Artist.belongsToMany(Genre, { through: 'artistsGenres' })
 Album.belongsTo(Artist)
 Artist.hasMany(Album)
 
+Song.belongsTo(Album)
+Album.hasMany(Song)
