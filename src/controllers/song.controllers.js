@@ -33,10 +33,26 @@ const update = catchError(async (req, res) => {
   return res.json(result[1][0])
 })
 
+//?/songs/:id/artists
+const setArtist = catchError(async (req, res) => {
+  //identificar la canción
+  const { id } = req.params
+  const song = await Song.findByPk(id)
+
+  //seteo los artistas a las canciones
+  await song.setArtists(req.body)
+
+  //Obtener lo que se setea
+  const artists = await song.getArtists()
+
+  return res.json(artists)
+})
+
 module.exports = {
   getAll,
   create,
   getOne,
   remove,
   update,
+  setArtist,
 }
